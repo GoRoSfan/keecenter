@@ -28,9 +28,13 @@ urlpatterns = [
     path('auth/', include('djoser.urls.authtoken')),
     path('auth/', include('djoser.urls.jwt')),
 
-    path('public/', include('public.urls')),
+    path('public/', include('public.urls'))
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)\
               + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
-urlpatterns += [re_path(r'^[^s][^t].*', TemplateView.as_view(template_name='index.html'))]
+urlpatterns += [
+    re_path(r'^[^s][^t].*', TemplateView.as_view(template_name='index.html')),
+
+    url(r'', RedirectView.as_view(url='news', permanent=False)),
+]

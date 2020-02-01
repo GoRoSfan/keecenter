@@ -13,7 +13,7 @@
                 </header>
                 <div class="news-main">
                     <img :src="host + one_new.image" alt="Фотографія до новини" class="news-image">
-                    <pre class="news-description">{{one_new.description}} {{text}}</pre>
+                    <pre class="news-description">{{one_new.description}}</pre>
                 </div>
                 <footer class="news-footer" @click="go_to_detail(host + one_new.detail)">Детальніше</footer>
             </article>
@@ -45,8 +45,7 @@
         data() {
             return {
                 news_list: '',
-                host: process.env.VUE_APP_API_URL + '/public/news/',
-                text: 'LA Bu dA '.repeat(30),
+                host: process.env.VUE_APP_API_URL,
                 current_page: 1,
                 total_news: 10,
                 page_size: 10,
@@ -55,7 +54,7 @@
 
         created() {
             $.ajax({
-                url: process.env.VUE_APP_API_URL + '/public/news/',
+                url: this.host + '/public/news/',
                 type: 'GET',
                 data: {
                     'current_page': this.current_page,
@@ -73,7 +72,7 @@
 
             page_change: function () {
                 $.ajax({
-                    url: process.env.VUE_APP_API_URL + '/public/news/',
+                    url: this.host + '/public/news/',
                     type: 'GET',
                     data: {
                         'current_page': this.current_page,

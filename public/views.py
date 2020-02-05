@@ -45,13 +45,9 @@ class AllNewsView(APIView):
     def get(self, request):
         page_size = 3
 
-        current_page = request.GET.get('current_page')
-        if current_page is None:
-            current_page = 1
-            first_connection = True
-        else:
-            current_page = int(request.GET.get('current_page'))
-            first_connection = False
+        first_connection = request.GET.get('first_connection')
+
+        current_page = int(request.GET.get('current_page'))
 
         all_news = News.objects.all()
 

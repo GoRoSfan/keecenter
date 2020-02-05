@@ -8,23 +8,6 @@
                 <router-link tag="div" to="/news" class="main-menu-item">
                     <div class="menu-item-name">Новини</div>
                 </router-link>
-                <router-link tag="div" to="/about" class="main-menu-item">
-                    <div class="menu-item-name">Про нас</div>
-                    <div class="sub-menu-list sub-menu-about">
-                        <router-link tag="div" to="/events" class="sub-menu-item">
-                            <div class="menu-item-name">Плани</div>
-                        </router-link>
-                        <router-link tag="div" to="/partners" class="sub-menu-item">
-                            <div class="menu-item-name">Партнери</div>
-                        </router-link>
-                        <router-link tag="div" to="/employees" class="sub-menu-item">
-                            <div class="menu-item-name">Каманда</div>
-                        </router-link>
-                        <router-link tag="div" to="/contact" class="sub-menu-item">
-                            <div class="menu-item-name">Контакти</div>
-                        </router-link>
-                    </div>
-                </router-link>
                 <div class="main-menu-item">
                     <div class="menu-item-name">Учасникам</div>
                     <div class="sub-menu-list sub-menu-members">
@@ -42,6 +25,26 @@
                 <router-link tag="div" to="/legal" class="main-menu-item">
                     <div class="menu-item-name">Правова база</div>
                 </router-link>
+                <div class="main-menu-item">
+                    <div class="menu-item-name">Додатково</div>
+                    <div class="sub-menu-list sub-menu-about">
+                        <router-link tag="div" to="/about" class="sub-menu-item">
+                            <div class="menu-item-name">Про нас</div>
+                        </router-link>
+                        <router-link tag="div" to="/events" class="sub-menu-item">
+                            <div class="menu-item-name">Плани</div>
+                        </router-link>
+                        <router-link tag="div" to="/partners" class="sub-menu-item">
+                            <div class="menu-item-name">Партнери</div>
+                        </router-link>
+                        <router-link tag="div" to="/employees" class="sub-menu-item">
+                            <div class="menu-item-name">Каманда</div>
+                        </router-link>
+                        <router-link tag="div" to="/contact" class="sub-menu-item">
+                            <div class="menu-item-name">Контакти</div>
+                        </router-link>
+                    </div>
+                </div>
             </nav>
         </header>
         <div class="content-container">

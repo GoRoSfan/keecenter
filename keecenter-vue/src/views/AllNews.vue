@@ -37,9 +37,7 @@
         name: 'AllNews',
 
         components: {
-
             HomeSlot,
-
         },
 
         data() {
@@ -58,7 +56,7 @@
                 type: 'GET',
                 data: {
                     'current_page': this.current_page,
-                    'connection': true,
+                    'first_connection': true,
                 },
                 success: (response) => {
                     this.news_list = response.data;

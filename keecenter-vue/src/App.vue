@@ -14,24 +14,24 @@
 
     body {
         margin: 0;
-        display: -webkit-box;
-        display: -moz-box;
-        display: -ms-flexbox;
-        display: -webkit-flex;
         display: flex;
 
         justify-content: center;
     }
 
-    h2 {
+    ul {
+        list-style: none;
         margin: 0;
-
-        font-size: 1.4rem;
-        font-weight: 400;
+        padding: 0;
     }
 
-    pre {
-        font-family: 'Avenir', Helvetica, Arial, sans-serif;
+    h2, h3, h4 {
+        margin: 0;
+    }
+
+    h2 {
+        font-size: 1.4rem;
+        font-weight: 400;
     }
 
     #app {

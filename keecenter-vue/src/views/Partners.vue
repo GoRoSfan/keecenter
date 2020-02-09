@@ -1,6 +1,6 @@
 <template>
     <HomeSlot #main>
-        <div class="context-header"><h2>Команда центру</h2></div>
+        <div class="context-header"><h2>Партнери центру</h2></div>
 
     </HomeSlot>
 </template>

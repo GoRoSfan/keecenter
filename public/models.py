@@ -134,30 +134,6 @@ class Clubs(models.Model):
         return reverse('club-detail', args=[str(self.id)])
 
 
-class TrainingCourses(models.Model):
-    # Модель підготовчих курсів
-
-    name = models.CharField("Назва курсу", max_length=150)
-    description = models.TextField("Опис діяльності підготовчого курсу", max_length=5000,
-                                   help_text="Введіть основну інформацію про курс", blank=True)
-    image = models.ImageField("Емблема або інше характерне зображення", upload_to='image/training_course_image/',
-                              default='default/default_image_training_course.png')
-    detail = models.FileField("Документ з детальою інформацією", upload_to='detail/training_course_detail/',
-                              default='default/default_detail.pdf')
-
-    class Meta:
-        verbose_name = 'Підготовчий курс'
-        verbose_name_plural = 'Підготовчі курси'
-
-        ordering = ['name']
-
-    def __str__(self):
-        return 'Курс - {0}'.format(self.name)
-
-    def get_absolute_url(self):
-        return reverse('training-course-detail', args=[str(self.id)])
-
-
 class Contacts(models.Model):
 
     label = models.CharField("Назва кантакту", max_length=50)
@@ -167,7 +143,7 @@ class Contacts(models.Model):
         verbose_name = 'Контакт'
         verbose_name_plural = 'Контакти'
 
-        ordering = ['label']
+        ordering = ['id']
 
     def __str__(self):
         return '{0}: {1}'.format(self.label, self.content)
@@ -191,7 +167,8 @@ class Legals(models.Model):
     name = models.CharField("Назва документа", max_length=100)
     detail = models.FileField("Документ з детальою інформацією", upload_to='detail/legal_detail/',
                               default='default/default_detail.pdf')
-    content_type = models.ForeignKey(ContentTypesLegals, on_delete=models.SET('Документ'), verbose_name='Тип документа')
+    content_type = models.ForeignKey(ContentTypesLegals, on_delete=models.SET('Документ'),
+                                     verbose_name='Тип документа', blank=True)
 
     class Meta:
         verbose_name = 'Документ'

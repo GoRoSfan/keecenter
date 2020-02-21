@@ -6,7 +6,12 @@
         </header>
         <div class="news-main">
             <img :src="host + NewImage" alt="Фотографія до новини" class="news-image">
-            <pre class="news-description">{{NewDescription}}</pre>
+            <pre class="news-description">{{NewDescription | truncateDescription(IsNewsPage, min_description_len, opened_description)}}</pre>
+            <b v-if="IsNewsPage && NewDescription.length >= min_description_len"
+               @click="opened_description = !opened_description"
+            >
+                {{opened_description ? 'Скрыть' : 'Подробнее'}}
+            </b>
         </div>
     </article>
 </template>
@@ -14,10 +19,25 @@
 <script>
     export default {
         name: "NewItem",
-        props: ['NewTitle', 'NewPostDate', 'NewImage', 'NewDescription', 'IsDateAvailable'],
+        props: ['NewTitle', 'NewPostDate', 'NewImage', 'NewDescription', 'IsNewsPage'],
         data() {
             return {
-                host: process.env.VUE_APP_API_URL
+                host: process.env.VUE_APP_API_URL,
+                min_description_len: 350,
+                opened_description: false,
+            }
+        },
+        filters: {
+            truncateDescription: (description, isNewsPage, min_description_len, isFullForm) => {
+                if (isNewsPage) {
+                    if (description.length > min_description_len && !isFullForm) {
+                        return description.slice(0, min_description_len).concat(' ...')
+                    } else {
+                        return description
+                    }
+                } else {
+                    return description.slice(0, min_description_len / 2).concat(' ...')
+                }
             }
         }
     }
@@ -98,11 +118,24 @@
         font-size: 1.2rem;
         text-align: left;
 
-        white-space: pre-wrap;
         word-break: normal;
     }
 
     aside .news-main pre {
         font-size: 0.85rem;
+    }
+
+    .news-main b {
+        font-size: 1.3rem;
+
+        cursor: pointer;
+    }
+
+    .news-main b:hover {
+        color: #FFAA00;
+    }
+
+    .news-main b:active {
+        color: #311491;
     }
 </style>

@@ -25,7 +25,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = os.environ.get('SECRET_KEY', 'x43)ex0#op5!d1iug^j*o(w5@xs#0_=)v@koa2&z3m&s1(v)e*')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = bool(os.environ.get('DJANGO_DEBUG', True))
+DEBUG = bool(os.environ.get('DJANGO_DEBUG', False))
 
 ALLOWED_HOSTS = ['127.0.0.1', 'keecenter.herokuapp.com', 'localhost']
 

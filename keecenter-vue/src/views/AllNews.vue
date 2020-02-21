@@ -9,7 +9,7 @@
                     :new-post-date="one_new.post_date"
                     :new-image="one_new.image"
                     :new-description="one_new.description"
-                    :is-date-available="true"
+                    :is-news-page="true"
             />
 <!--            <article-->
 <!--                    v-for="(one_new, index) in news_list"-->

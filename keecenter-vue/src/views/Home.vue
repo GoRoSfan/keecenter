@@ -4,7 +4,7 @@
             <div class="site-header">
                 <h1>ХЕРСОНСЬКИЙ НАУКОВО-ДОСЛІДНИЦЬКИЙ ЦЕНТР УЧНІВСЬКОЇ ТА СТУДЕНТСЬКОЇ МОЛОДІ</h1>
             </div>
-            <Menu/>
+            <MainMenu/>
         </header>
         <div class="content-container">
             <main>
@@ -33,13 +33,13 @@
 
 <script>
     import $ from 'jquery'
-    import Menu from '@/components/Menu'
+    import MainMenu from '@/components/MainMenu'
     import NewItem from "../components/NewItem";
 
     export default {
         name: 'Home',
         components: {
-            Menu,
+            MainMenu,
             NewItem
         },
 

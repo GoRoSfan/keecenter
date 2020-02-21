@@ -14,7 +14,7 @@
     import OneMenuItem from "./MenuItem";
 
     export default {
-        name: "menu",
+        name: "main-menu",
         components: {
             OneMenuItem
         },

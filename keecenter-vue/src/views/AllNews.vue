@@ -57,7 +57,7 @@
                 host: process.env.VUE_APP_API_URL,
                 current_page: 1,
                 total_news: 10,
-                page_size: 10,
+                page_size: 5,
             };
         },
 
@@ -68,11 +68,11 @@
                 data: {
                     'current_page': this.current_page,
                     'first_connection': true,
+                    'page_size': this.page_size,
                 },
                 success: (response) => {
                     this.news_list = response.data;
                     this.total_news = response.total_news;
-                    this.page_size = response.page_size;
                 },
             });
         },

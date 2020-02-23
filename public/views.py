@@ -42,7 +42,7 @@ class AllNewsView(APIView):
     renderer_classes = [JSONRenderer]
 
     def get(self, request):
-        page_size = 3
+        page_size = int(request.GET.get('page_size', 3))
 
         first_connection = request.GET.get('first_connection')
 
@@ -58,7 +58,6 @@ class AllNewsView(APIView):
         if first_connection:
             total_news = all_news.count()
             content['total_news'] = total_news
-            content['page_size'] = page_size
 
         return Response(content)
 

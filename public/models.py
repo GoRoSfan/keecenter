@@ -23,8 +23,10 @@ class News(models.Model):
     title = models.CharField("Заголовок новини", max_length=300)
     post_date = models.DateField("Дата публікації", auto_now_add=True)
     description = models.TextField("Опис новини", max_length=10000, blank=True)
+    image_hash = models.CharField("Хеш зображення новини", max_length=120, blank=True, null=True)
     image = models.ImageField("Основне зображення новини", upload_to='image/new_image',
                               default='default/default_image_new.png')
+    detail_hash = models.CharField("Хеш детальної інформації", max_length=120, blank=True, null=True)
     detail = models.FileField("Документ з детальною інформацією", upload_to='detail/new_detail/',
                               default='default/default_detail.pdf')
 

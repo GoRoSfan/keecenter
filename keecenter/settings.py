@@ -24,9 +24,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get('SECRET_KEY', 'x43)ex0#op5!d1iug^j*o(w5@xs#0_=)v@koa2&z3m&s1(v)e*')
 
-ALLOWED_HOSTS = ['127.0.0.1', 'keecenter.herokuapp.com', 'localhost']
-
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -135,7 +132,7 @@ SITE = 1
 
 MEDIA_URL = '/media/'
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'static/media')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
 REST_FRAMEWORK = {

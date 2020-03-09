@@ -2,7 +2,7 @@ import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-ALLOWED_HOSTS = ['keecenter.herokuapp.com']
+ALLOWED_HOSTS = ['keecenter.herokuapp.com', 'test-d-v.herokuapp.com']
 
 DEBUG = True
 

@@ -2,6 +2,8 @@ from django.contrib import admin
 from .models import News, ContentTypesNews, ActivityTypesClubs, Events, Clubs, Contacts,\
     Legals, Employees, Partners
 
+from .bot import send_photo
+
 
 admin.site.register(ContentTypesNews)
 # admin.site.register(ActivityTypesClubs)
@@ -16,7 +18,8 @@ class NewsAdmin(admin.ModelAdmin):
 
     def save_model(self, request, obj: News, form, change):
         super().save_model(request, obj, form, change)
-        obj.image_hash = request.META['HTTP_ORIGIN'] + obj.image.url
+        image_link = request.META['HTTP_ORIGIN'] + obj.image.url
+        obj.image_hash = send_photo(image_link, obj._meta.verbose_name_plural)
         super().save_model(request, obj, form, change)
 
 

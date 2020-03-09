@@ -5,7 +5,7 @@
             <time>{{NewPostDate}}</time>
         </header>
         <div class="news-main">
-            <img src="@/assets/default_image_new.png" alt="Фотографія до новини" class="news-image">
+            <img :src="NewImage" alt="Фотографія до новини" class="news-image">
             <pre class="news-description">{{NewDescription | truncateDescription(IsNewsPage, min_description_len, opened_description)}}</pre>
             <b v-if="IsNewsPage && NewDescription.length >= min_description_len"
                @click="opened_description = !opened_description"
@@ -25,6 +25,7 @@
                 host: process.env.VUE_APP_API_URL,
                 min_description_len: 350,
                 opened_description: false,
+                some: process,
             }
         },
         filters: {

@@ -14,8 +14,8 @@ admin.site.register(Partners)
 
 class NewsAdmin(admin.ModelAdmin):
 
-    list_display = ('title', 'description', 'visitors_type', 'image_hash')
-    fields = ('title', 'description', ('visitors_type', 'content_types'), 'image', 'image_hash')
+    list_display = ('title', 'visitors_type', 'content_types')
+    fields = ('title', 'description', ('visitors_type', 'content_types'), 'image')
 
     def save_model(self, request, obj: News, form, change):
         if '127.0.0.1' in ALLOWED_HOSTS:

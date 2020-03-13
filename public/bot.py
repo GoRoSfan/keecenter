@@ -38,16 +38,16 @@ def do_start(update: Update):
     )
 
 
-def send_photo(photo, chat):
+def send_image(image, chat):
     chat_id = get_chat(chat)
 
     message = bot.send_photo(
         chat_id=chat_id,
-        photo=photo
+        photo=image
     )
 
-    photo_hash = message.photo[-1].file_id
-    return photo_hash
+    image_hash = message.photo[-1].file_id
+    return image_hash
 
 
 def send_file(document, chat):
@@ -62,12 +62,13 @@ def send_file(document, chat):
     return file_hash
 
 
-def get_photo(photo_hash):
-    pass
+def get_file(file_hash):
+    try:
+        file_object = bot.get_file(file_hash)
+    except Exception:
+        file_object = ''
 
-
-def get_file(photo_hash):
-    pass
+    return file_object.file_path
 
 
 bot = Bot(

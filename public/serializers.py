@@ -3,6 +3,19 @@ from rest_framework import serializers
 from .models import ContentTypesNews, News, ContentTypesLegals, Legals, Contacts, ActivityTypesClubs, Clubs,\
     Events, Employees, Partners
 
+from .bot import get_file
+
+
+class FileUrlField(serializers.Field):
+
+    def to_representation(self, value):
+        ret = get_file(value)
+        return ret
+
+    def to_internal_value(self, data):
+        ret = data
+        return ret
+
 
 class ContentTypesNewsSerializers(serializers.ModelSerializer):
 
@@ -16,10 +29,13 @@ class AllNewsSerializers(serializers.ModelSerializer):
 
     content_types = ContentTypesNewsSerializers(many=True)
 
+    image_url = FileUrlField(source='image_hash')
+
     class Meta:
 
         model = News
-        fields = ('id', 'title', 'post_date', 'description', 'image', 'detail', 'visitors_type', 'content_types')
+        fields = ('id', 'title', 'post_date', 'description', 'image_url', 'image',
+                  'detail', 'visitors_type', 'content_types')
 
 
 class ContentTypesLegalsSerializers(serializers.ModelSerializer):

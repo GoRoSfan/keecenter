@@ -5,7 +5,9 @@
             <time>{{NewPostDate}}</time>
         </header>
         <div class="news-main">
-            <img :src="NewImage" alt="Фотографія до новини" class="news-image">
+            <img v-if="host === 'http://127.0.0.1:8000'" :src="host + NewImageMedia" alt="Фотографія до новини"
+                 class="news-image">
+            <img v-else :src="NewImageTg" alt="Фотографія до новини" class="news-image">
             <pre class="news-description">{{NewDescription | truncateDescription(IsNewsPage, min_description_len, opened_description)}}</pre>
             <b v-if="IsNewsPage && NewDescription.length >= min_description_len"
                @click="opened_description = !opened_description"
@@ -19,7 +21,7 @@
 <script>
     export default {
         name: "NewItem",
-        props: ['NewTitle', 'NewPostDate', 'NewImage', 'NewDescription', 'IsNewsPage'],
+        props: ['NewTitle', 'NewPostDate', 'NewImageTg', 'NewImageMedia', 'NewDescription', 'IsNewsPage'],
         data() {
             return {
                 host: process.env.VUE_APP_API_URL,
@@ -37,10 +39,14 @@
                         return description
                     }
                 } else {
-                    return description.slice(0, min_description_len / 2).concat(' ...')
+                    if (description.length > min_description_len / 2) {
+                        return description.slice(0, min_description_len / 2).concat(' ...')
+                    } else {
+                        return description
+                    }
                 }
-            }
-        }
+            },
+        },
     }
 </script>
 

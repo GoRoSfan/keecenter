@@ -17,7 +17,8 @@
                              :key="index"
                              :new-title="last_one.title"
                              :new-post-date="last_one.post_date"
-                             :new-image="last_one.image_url"
+                             :new-image-tg="last_one.image_url"
+                             :new-image-media="last_one.image"
                              :new-description="last_one.description"
                     />
                 </div>

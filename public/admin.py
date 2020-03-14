@@ -14,7 +14,7 @@ admin.site.register(Partners)
 
 class NewsAdmin(admin.ModelAdmin):
 
-    list_display = ('title', 'visitors_type', 'content_types')
+    list_display = ('title', 'post_date', 'visitors_type')
     fields = ('title', 'description', ('visitors_type', 'content_types'), 'image')
 
     def save_model(self, request, obj: News, form, change):

@@ -7,7 +7,8 @@
                     :key="index"
                     :new-title="one_new.title"
                     :new-post-date="one_new.post_date"
-                    :new-image="one_new.image_url"
+                    :new-image-tg="one_new.image_url"
+                    :new-image-media="one_new.image"
                     :new-description="one_new.description"
                     :is-news-page="true"
             />

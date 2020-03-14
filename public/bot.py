@@ -63,10 +63,7 @@ def send_file(document, chat):
 
 
 def get_file(file_hash):
-    try:
-        file_object = bot.get_file(file_hash)
-    except Exception:
-        file_object = ''
+    file_object = bot.get_file(file_hash)
 
     return file_object.file_path
 

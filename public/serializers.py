@@ -9,7 +9,10 @@ from .bot import get_file
 class FileUrlField(serializers.Field):
 
     def to_representation(self, value):
-        ret = get_file(value)
+        try:
+            ret = get_file(value)
+        except Exception:
+            ret = ''
         return ret
 
     def to_internal_value(self, data):

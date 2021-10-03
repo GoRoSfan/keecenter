@@ -1,13 +1,14 @@
 node_modules/
-/dist/
-media/
 
 .idea
 
 env/
+.env
+
 *.pyc
 __pycache__/
-local_settings.py
-.env
+
 db.sqlite3
 migrations/
+media/
+local_settings.py

@@ -4,97 +4,42 @@
 
 from rest_framework import serializers
 
-from .models import NewContentTypes, News, LegalContentTypes, Legals, \
-    Contacts, Events, Employees, Partners
+from .models import News, Legals, ClubType, Club, Profile
 
 
-class FileUrlField(serializers.Field):
-    """ FileUrlField
-
-    """
-
-
-class NewContentTypesSerializers(serializers.ModelSerializer):
-    """ NewContentTypes serializer
-
-    """
-
-    class Meta:
-        model = NewContentTypes
-        fields = ('id', 'name')
-
-
-class AllNewsSerializers(serializers.ModelSerializer):
-    """ AllNews serializer
-
-    """
-
-    content_types = NewContentTypesSerializers(many=True)
-    image_url = FileUrlField(source='image_hash')
+class NewsSerializers(serializers.ModelSerializer):
 
     class Meta:
         model = News
-        fields = ('id', 'title', 'post_date', 'description', 'image_url', 'image',
-                  'detail', 'visitors_type', 'content_types')
+        fields = ('id', 'title', 'post_date', 'description')
 
 
-class LegalContentTypesSerializers(serializers.ModelSerializer):
-    """ LegalContentTypes serializer
-
-    """
+class ClubTypeSerializers(serializers.ModelSerializer):
 
     class Meta:
-        model = LegalContentTypes
+        model = ClubType
         fields = ('id', 'name')
 
 
+class ClubSerializers(serializers.ModelSerializer):
+    club_type = ClubTypeSerializers()
+
+    class Meta:
+        model = Club
+        fields = ('id', 'name', 'description', 'club_type')
+
+
 class LegalsSerializers(serializers.ModelSerializer):
-    """ Legals serializer
-
-    """
-
-    content_type = LegalContentTypesSerializers()
 
     class Meta:
         model = Legals
         fields = ('id', 'name', 'detail')
 
 
-class ContactsSerializers(serializers.ModelSerializer):
-    """ Contacts serializer
-
-    """
+class ProfileSerializers(serializers.ModelSerializer):
 
     class Meta:
-        model = Contacts
-        fields = ('id', 'label', 'content')
+        model = Profile
+        fields = ('id', 'name', 'detail')
 
 
-class AllEventsSerializers(serializers.ModelSerializer):
-    """ AllEvents serializer
-
-    """
-
-    class Meta:
-        model = Events
-        fields = ('id', 'name', 'date_placing', 'detail')
-
-
-class EmployeesSerializers(serializers.ModelSerializer):
-    """ Employees serializer
-
-    """
-
-    class Meta:
-        model = Employees
-        fields = ('id', 'first_name', 'last_name', 'position', 'characters', 'photo')
-
-
-class PartnersSerializers(serializers.ModelSerializer):
-    """ Partners serializer
-
-    """
-
-    class Meta:
-        model = Partners
-        fields = ('id', 'title', 'description', 'partner_link', 'logo')

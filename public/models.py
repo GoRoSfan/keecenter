@@ -4,6 +4,8 @@
 
 from django.contrib.auth.models import User
 from django.db import models
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 from django.urls import reverse
 
 
@@ -16,7 +18,7 @@ class News(models.Model):
     class Meta:
         verbose_name = 'Новина'
         verbose_name_plural = 'Новини'
-        ordering = ['-id']
+        ordering = ['-post_date']
 
     def __str__(self):
         return '{0} - {1}'.format(self.title, self.post_date)
@@ -80,8 +82,6 @@ class Legals(models.Model):
 class Profile(models.Model):
 
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    first_name = models.CharField("Им'я", max_length=25)
-    last_name = models.CharField("Прізвище", max_length=40)
     is_teacher = models.BooleanField('Вчитель', max_length=35, default=False)
     photo = models.ImageField("Фотокартка", upload_to='image/employee_image/',
                               default='default/default_image_employee.png')
@@ -89,7 +89,18 @@ class Profile(models.Model):
     class Meta:
         verbose_name = 'Профіль'
         verbose_name_plural = 'Профелі'
-        ordering = ['last_name', 'first_name']
+        ordering = ['user']
 
     def __str__(self):
-        return '{0}, {1}'.format(self.first_name, self.last_name)
+        return '{0}, {1}'.format(self.user.first_name, self.user.last_name)
+
+
+@receiver(post_save, sender=User)
+def create_user_profile(sender, instance, created, **kwargs):
+    if created:
+        Profile.objects.create(user=instance)
+
+
+@receiver(post_save, sender=User)
+def save_user_profile(sender, instance, **kwargs):
+    instance.profile.save()

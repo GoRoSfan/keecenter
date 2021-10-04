@@ -7,39 +7,48 @@ from rest_framework import serializers
 from .models import News, Legals, ClubType, Club, Profile
 
 
-class NewsSerializers(serializers.ModelSerializer):
+class NewsSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = News
-        fields = ('id', 'title', 'post_date', 'description')
+        fields = ('url', 'title', 'post_date', 'description')
 
 
-class ClubTypeSerializers(serializers.ModelSerializer):
+class ClubTypeSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = ClubType
-        fields = ('id', 'name')
+        fields = ('name', )
 
 
-class ClubSerializers(serializers.ModelSerializer):
-    club_type = ClubTypeSerializers()
+class ClubSerializer(serializers.HyperlinkedModelSerializer):
+    club_type = ClubTypeSerializer()
 
     class Meta:
         model = Club
-        fields = ('id', 'name', 'description', 'club_type')
+        fields = ('url', 'name', 'description', 'club_type')
 
 
-class LegalsSerializers(serializers.ModelSerializer):
+class LegalsSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Legals
-        fields = ('id', 'name', 'detail')
+        fields = ('url', 'name', 'detail')
 
 
-class ProfileSerializers(serializers.ModelSerializer):
+class UserSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Legals
+        fields = ('first_name', 'last_name', 'email')
+
+
+class ProfileSerializer(serializers.HyperlinkedModelSerializer):
+
+    user = UserSerializer()
 
     class Meta:
         model = Profile
-        fields = ('id', 'name', 'detail')
+        fields = ('url', 'is_teacher', 'photo', 'user')
 
 

@@ -6,12 +6,12 @@ from .models import News, Legals, Profile, ClubType, Club
 class NewsAdmin(admin.ModelAdmin):
 
     list_display = ('title', 'post_date')
-    fields = ('title', 'description', 'content_types')
+    fields = ('title', 'description')
 
 
 class LegalsAdmin(admin.ModelAdmin):
 
-    list_display = ('name', 'detail')
+    list_display = ('name', )
     fields = ('name', 'detail')
 
 
